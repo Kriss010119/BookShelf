@@ -5,7 +5,7 @@ import type { RootState } from '../../store/store';
 import { addBook, addShelf } from '../../store/slices/librarySlice';
 import { addBookToFirebase, addShelfToFirebase } from '../../firebase/libraryService';
 import { searchBook } from '../../hooks/searchBook';
-import type { BookDataType, ShelfType } from '../../types/types.ts';
+import type { BookDataType, ShelfType } from '../../types/types';
 import styles from './CreateBook.module.css';
 
 const CreateBook: React.FC = () => {

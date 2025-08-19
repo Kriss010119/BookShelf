@@ -8,7 +8,7 @@ import {
   arrayRemove,
   deleteField
 } from 'firebase/firestore';
-import type { ShelfType, BookType } from '../types/types.ts';
+import type { ShelfType, BookType } from '../types/types';
 
 export const loadLibraryFromFirebase = async (userId: string) => {
   const libraryRef = doc(db, 'libraries', userId);

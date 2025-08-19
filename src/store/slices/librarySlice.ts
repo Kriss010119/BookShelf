@@ -1,7 +1,7 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import type { LibraryState, ProfileType } from '../../types/types.ts';
-import type { BookType } from '../../types/types.ts';
-import type { ShelfType } from '../../types/types.ts';
+import type { LibraryState, ProfileType } from '../../types/types';
+import type { BookType } from '../../types/types';
+import type { ShelfType } from '../../types/types';
 
 const initialState: LibraryState = {
   shelves: [],

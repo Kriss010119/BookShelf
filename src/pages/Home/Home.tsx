@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase/firebase-config';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import styles from './Home.module.css';
-import type { ProfileType } from '../../types/types.ts';
+import type { ProfileType } from '../../types/types';
 
 type UserType = {
   avatarImage: string;

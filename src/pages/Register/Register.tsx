@@ -1,7 +1,7 @@
 import { type ChangeEvent, type FormEvent, useState } from 'react';
 import { registerUser, updateUserProfile } from '../../firebase/firebase-config';
 import { useNavigate } from 'react-router-dom';
-import { Form } from '../../components/Form/Form.tsx';
+import { Form } from '../../components/Form/Form';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../store/slices/userSlice';
 import styles from './Register.module.css';

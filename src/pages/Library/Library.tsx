@@ -12,7 +12,7 @@ import {
 import type { ShelfType } from '../../types/types';
 import type { BookDataType } from '../../types/types';
 import Modal from '../../components/Modal/Modal';
-import Shelf from '../../components/Shelf/Shelf.tsx';
+import Shelf from '../../components/Shelf/Shelf';
 import { useNavigate } from 'react-router-dom';
 import styles from './Library.module.css';
 

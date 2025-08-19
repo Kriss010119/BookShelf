@@ -1,4 +1,4 @@
-import type { BookDataType } from '../../types/types.ts';
+import type { BookDataType } from '../../types/types';
 import { useDispatch } from 'react-redux';
 import { selectBook } from '../../store/slices/librarySlice';
 import styles from './Book.module.css';

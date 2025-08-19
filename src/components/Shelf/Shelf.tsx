@@ -1,7 +1,7 @@
 import React from 'react';
 import Book from '../Book/Book';
-import type { BookType } from '../../types/types.ts';
-import type { BookDataType } from '../../types/types.ts';
+import type { BookType } from '../../types/types';
+import type { BookDataType } from '../../types/types';
 import { useNavigate } from 'react-router-dom';
 import styles from './Shelf.module.css';
 

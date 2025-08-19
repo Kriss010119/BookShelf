@@ -1,4 +1,4 @@
-import type { FormProps } from '../../types/types.ts';
+import type { FormProps } from '../../types/types';
 import styles from './Form.module.css';
 
 export const Form = ({

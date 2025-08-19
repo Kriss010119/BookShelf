@@ -2,7 +2,7 @@ import type { User } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { SignOutUser, userStateListener } from '../firebase/firebase-config';
 import { type ReactNode, useEffect, useState } from 'react';
-import { AuthContext } from './auth-contextBase.tsx';
+import { AuthContext } from './auth-contextBase';
 
 type Props = {
   children?: ReactNode;

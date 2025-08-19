@@ -6,14 +6,14 @@ import { useDispatch } from 'react-redux';
 import Home from './pages/Home/Home.tsx';
 import Login from './pages/Login/Login.tsx';
 import Profile from './pages/Profile/Profile';
-import Register from './pages/Register/Register.tsx';
+import Register from './pages/Register/Register';
 import Header from './components/Header/Header';
-import Library from './pages/Library/Library.tsx';
+import Library from './pages/Library/Library';
 import EditBook from './pages/EditBook/EditBook';
 import styles from './App.module.css';
-import Sidebar from './components/Sidebar/Sidebar.tsx';
-import CreateBook from './pages/CreateBook/CreateBook.tsx';
-import PublicLibrary from './pages/PublicLibrary/PublicLibrary.tsx';
+import Sidebar from './components/Sidebar/Sidebar';
+import CreateBook from './pages/CreateBook/CreateBook';
+import PublicLibrary from './pages/PublicLibrary/PublicLibrary';
 
 function App() {
   const { isAuth } = useAuth();

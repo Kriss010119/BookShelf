@@ -2,8 +2,8 @@ import { updateUserProfile, userStateListener } from '../firebase/firebase-confi
 import type { AppDispatch } from '../store/store';
 import { setUser, removeUser, setLoading } from '../store/slices/userSlice';
 import { getUserProfile } from '../firebase/firebase-config';
-import { loadLibraryFromFirebase } from '../firebase/libraryService.ts';
-import { setLibrary } from '../store/slices/librarySlice.ts';
+import { loadLibraryFromFirebase } from '../firebase/libraryService';
+import { setLibrary } from '../store/slices/librarySlice';
 
 export const initAuth = (dispatch: AppDispatch) => {
   dispatch(setLoading());

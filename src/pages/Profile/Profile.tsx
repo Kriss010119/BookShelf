@@ -4,7 +4,7 @@ import type { RootState } from '../../store/store';
 import { updateProfile } from '../../store/slices/userSlice';
 import { updateUserProfile, checkUsernameExists } from '../../firebase/firebase-config';
 import AvatarSelector from '../../components/AvatarSelector/AvatarSelector';
-import { AuthContext } from '../../context/auth-contextBase.tsx';
+import { AuthContext } from '../../context/auth-contextBase';
 import styles from './Profile.module.css';
 
 function Profile() {
