@@ -1,0 +1,129 @@
+.shelfContainer {
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  max-width: calc(100vw - 400px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  max-height: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.shelfHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #e0e0e0;
+  flex-shrink: 0;
+}
+
+.shelfTitle {
+  font-family: 'Caveat', cursive;
+  font-size: 1.8rem;
+  color: #5d4037;
+  margin: 0;
+}
+
+.bookCount {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
+}
+
+.shelfActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.actionButton {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.addButton {
+  background-color: #8d6e63;
+  color: white;
+  border: none;
+}
+
+.addButton:hover {
+  background-color: #6d4c41;
+}
+
+.removeButton {
+  background-color: #f5f5f5;
+  border: 1px solid #d7ccc8;
+  color: #5d4037;
+}
+
+.removeButton:hover {
+  background-color: #e0e0e0;
+}
+
+.booksContainer {
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 1rem;
+}
+
+.booksRow {
+  display: inline-flex;
+  gap: 1rem;
+  height: 100%;
+  min-width: 100%;
+  align-items: flex-start;
+}
+
+.booksContainer::-webkit-scrollbar {
+  height: 8px;
+}
+
+.booksContainer::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.booksContainer::-webkit-scrollbar-thumb {
+  background: #8d6e63;
+  border-radius: 4px;
+}
+
+.booksContainer::-webkit-scrollbar-thumb:hover {
+  background: #6d4c41;
+}
+
+.emptyShelf {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #666;
+  font-style: italic;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .shelfContainer {
+    font-size: 14px;
+    margin: 0;
+    padding: 1rem;
+    height: 300px;
+    max-width: 350px;
+  }
+
+  .shelfTitle {
+    font-size: 1.5rem;
+  }
+
+  .actionButton {
+    padding: 0.5rem;
+  }
+}
