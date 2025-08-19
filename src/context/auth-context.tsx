@@ -1,31 +1,39 @@
-import type { User } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
-import { SignOutUser, userStateListener } from '../firebase/firebase-config';
-import { type ReactNode, useEffect, useState } from 'react';
-import { AuthContext } from './auth-contextBase.tsx';
+import type {User} from "firebase/auth";
+import {useNavigate} from "react-router-dom";
+import {SignOutUser, userStateListener} from "../firebase/firebase-config";
+import {createContext, type ReactNode, useEffect, useState} from "react";
 
 type Props = {
-  children?: ReactNode;
-};
+    children?: ReactNode;
+}
 
-export const AuthProvider = ({ children }: Props) => {
-  const [user, setUser] = useState<User | null>(null);
-  const navigate = useNavigate();
+export const AuthContext = createContext({
+    user: {} as User | null,
+    signOut: () => {}
+})
 
-  useEffect(() => {
-    return userStateListener((user) => {
-      setUser(user);
-    });
-  }, []);
+export const AuthProvider = ({children}: Props) => {
+    const [user, setUser] = useState<User | null>(null);
+    const navigate = useNavigate();
 
-  const signOut = () => {
-    SignOutUser().then(() => {
-      setUser(null);
-      navigate('/');
-    });
-  };
+    useEffect(() => {
+        return userStateListener((user) => {
+            setUser(user);
+        });
+    }, []);
 
-  const value = { user, signOut };
+    const signOut = () => {
+        SignOutUser().then(() => {
+            setUser(null);
+            navigate("/");
+        });
+    };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+    const value = {user, signOut};
+
+    return (
+        <AuthContext.Provider value={value}>
+            {children}
+        </AuthContext.Provider>
+    );
 };
