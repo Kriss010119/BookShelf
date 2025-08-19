@@ -44,3 +44,9 @@ BookShelf - это веб-приложение для управления ли�
    ```bash
    npm run dev
    ```
+
+
+## Коммиты
+Изначально все выкладывалось в репозитории гитлаба (https://gitlab.education.tbank.ru/js-frameworks-summer-2025/Students/osina.daria/Homeworks/course-work/-/compare/master...homework?from_project_id=13750), поэтому прилагаю коммиты оттуда:
+<img width="900" height="800" alt="image" src="https://github.com/user-attachments/assets/8caa3e0d-8af2-402b-9de0-1d5610a5c05f" />
+
