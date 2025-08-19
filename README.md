@@ -1,6 +1,6 @@
 # BookShelf - Управление личной библиотекой
 ## Ссылка на общедоступный адрес
-https://vercel.com/kriss1048293s-projects/book-shelf/7td6W5ws1M1zR2ZWcTpw5ijDyGbN
+https://book-shelf-pi-tawny.vercel.app/
 
 ## Автор проекта
 Осина Дарья Евгеньевна
