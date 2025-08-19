@@ -32,9 +32,9 @@ function Register() {
         await updateUserProfile(
           user.uid,
           {
-            username: null,
+            username: "",
             avatarType: 'letter',
-            avatarImage: null,
+            avatarImage: "",
             isPublic: false
           },
           null

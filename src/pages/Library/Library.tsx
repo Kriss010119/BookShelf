@@ -36,13 +36,7 @@ const Library = ({ isPublic = false }) => {
   const [showAddShelfModal, setShowAddShelfModal] = useState(false);
   const [shelfTitle, setShelfTitle] = useState('');
   const [libraryLoading, setLibraryLoading] = useState(true);
-  let myImg = '';
-
-  try {
-    myImg = ownerInfo.avatarImage;
-  } catch {
-    myImg = '';
-  }
+  const myImg = ownerInfo?.avatarImage || '';
 
   useEffect(() => {
     if (!isPublic && isAuth && userId) {

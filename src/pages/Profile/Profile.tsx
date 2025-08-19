@@ -57,8 +57,8 @@ function Profile() {
 
       const profileData = {
         username: newUsername,
-        avatarType: avatarData.type || '',
-        avatarImage: avatarData.image || '',
+        avatarType: avatarData.type || 'letter',
+        avatarImage: avatarData.image || 'default-avatar.jpg',
         isPublic: profileVisibility
       };
 

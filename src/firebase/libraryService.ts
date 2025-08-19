@@ -132,7 +132,9 @@ export const getPublicUserProfile = async (userId: string) => {
     username: userData.username,
     avatarType: userData.avatarType,
     avatarImage: userData.avatarImage,
-    avatarColor: userData.avatarColor
+    avatarColor: userData.avatarColor,
+    isPublic: userData.isPublic,
+    id: userId
   };
 };
 
