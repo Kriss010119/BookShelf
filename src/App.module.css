@@ -1,56 +1,56 @@
 .parent {
-    display: grid;
-    grid-template-areas:
-        "nav header"
-        "nav content";
-    grid-template-columns: 280px 1fr;
-    grid-template-rows: auto 1fr;
-    min-height: 100vh;
-    font-family: 'Poppins', sans-serif;
+  display: grid;
+  grid-template-areas:
+    'nav header'
+    'nav content';
+  grid-template-columns: 280px 1fr;
+  grid-template-rows: auto 1fr;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
 }
 
 .header {
-    grid-area: header;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    z-index: 10;
+  grid-area: header;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 10;
 }
 
 .nav {
-    grid-area: nav;
-    background-color: #bca99a;
+  grid-area: nav;
+  background-color: #bca99a;
 }
 
 .content {
-    grid-area: content;
-    padding: 2rem;
-    background-color: #bca99a;
+  grid-area: content;
+  padding: 2rem;
+  background-color: #bca99a;
 }
 
 @media (max-width: 1024px) {
-    .parent {
-        grid-template-areas:
-            "header"
-            "nav"
-            "content";
-        grid-template-columns: 1fr;
-    }
+  .parent {
+    grid-template-areas:
+      'header'
+      'nav'
+      'content';
+    grid-template-columns: 1fr;
+  }
 
-    .content {
-        padding: 0;
-        margin: 0;
-    }
+  .content {
+    padding: 0;
+    margin: 0;
+  }
 
-    .nav {
-        position: relative;
-        height: 130px;
-    }
+  .nav {
+    position: relative;
+    height: 130px;
+  }
 }
 
 .loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-size: 1.5rem;
-    color: #8d6e63;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.5rem;
+  color: #8d6e63;
 }

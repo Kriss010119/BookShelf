@@ -1,92 +1,92 @@
 .authContainer {
-    max-width: 500px;
-    margin: 2rem auto;
-    background-color: inherit;
-    border-radius: 8px;
-    font-family: 'Poppins', sans-serif;
+  max-width: 500px;
+  margin: 2rem auto;
+  background-color: inherit;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .authTitle {
-    font-family: 'Caveat', cursive;
-    font-size: 2.2rem;
-    color: #5d4037;
-    text-align: center;
-    margin-bottom: 1.5rem;
+  font-family: 'Caveat', cursive;
+  font-size: 2.2rem;
+  color: #5d4037;
+  text-align: center;
+  margin-bottom: 1.5rem;
 }
 
 .formGroup {
-    margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .formLabel {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    color: #333;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #333;
 }
 
 .formInput {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #d7ccc8;
-    border-radius: 4px;
-    font-size: 1rem;
-    font-family: 'Poppins', sans-serif;
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d7ccc8;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
 }
 
 .formInput:focus {
-    outline: none;
-    border-color: #8d6e63;
-    box-shadow: 0 0 0 2px rgba(141, 110, 99, 0.2);
+  outline: none;
+  border-color: #8d6e63;
+  box-shadow: 0 0 0 2px rgba(141, 110, 99, 0.2);
 }
 
 .submitButton {
-    width: 100%;
-    padding: 0.75rem;
-    background-color: #8d6e63;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 1rem;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #8d6e63;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
 }
 
 .submitButton:hover {
-    background-color: #6d4c41;
+  background-color: #6d4c41;
 }
 
 .authLinkContainer {
-    text-align: center;
-    margin-top: 1.5rem;
-    color: #666;
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #666;
 }
 
 .authLink {
-    color: #8d6e63;
-    text-decoration: none;
-    font-weight: 500;
+  color: #8d6e63;
+  text-decoration: none;
+  font-weight: 500;
 }
 
 .authLink:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .errorMessage {
-    color: #d32f2f;
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
+  color: #d32f2f;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
 }
 
 @media (max-width: 600px) {
-    .authContainer {
-        padding: 1.5rem;
-        margin: 1rem;
-    }
+  .authContainer {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
 
-    .authTitle {
-        font-size: 1.8rem;
-    }
+  .authTitle {
+    font-size: 1.8rem;
+  }
 }
