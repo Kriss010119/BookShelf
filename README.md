@@ -1,69 +1,46 @@
-# React + TypeScript + Vite
+# BookShelf - Управление личной библиотекой
+## Ссылка на общедоступный адрес
+https://book-shelf-pi-tawny.vercel.app/
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Автор проекта
+Осина Дарья Евгеньевна
 
-Currently, two official plugins are available:
+## Название веб-приложения
+BookShelf
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Описание
+BookShelf - это веб-приложение для управления личной библиотекой. Пользователи могут:
+- Создавать виртуальные книжные полки
+- Добавлять книги с информацией об авторе, обложке и отзыве
+- Настраивать публичный или приватный доступ к своей библиотеке
+- Искать книги через интеграцию с внешним API (Gutendex)
+- Просматривать публичные библиотеки других пользователей
 
-## Expanding the ESLint configuration
+## Функциональные возможности
+- Регистрация и аутентификация пользователей
+- Настройка профиля (аватар, имя пользователя, видимость профиля)
+- Создание/удаление/редактирование книг
+- Создание/удаление полок
+- Поиск книг по названию, автору или ISBN
+- Просмотр публичных библиотек других пользователей
+- Адаптивный интерфейс
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Технологический стек
+- Frontend: React, TypeScript, Redux Toolkit
+- Стили: CSS Modules
+- API: Firebase (аутентификация, база данных)
+- API: Gutendex (поиск книг)
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname
-      }
-      // other options...
-    }
-  }
-]);
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname
-      }
-      // other options...
-    }
-  }
-]);
-```
+## Установка и запуск
+1. Клонировать репозиторий:
+   ```bash
+   git clone https://github.com/username/bookshelf.git
+   ```
+2. Запустить в консоли установку необходимых зависимостей и пакетов
+   ```bash
+   npm install
+   ```
+3. Запустить приложение
+   ```bash
+   npm run dev
+   ```
