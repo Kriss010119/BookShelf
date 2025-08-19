@@ -3,8 +3,12 @@ import styles from './Header.module.css';
 const Header = () => {
   return (
     <div className={styles.header}>
-      <img src="/logo.svg" alt="logo" />
-      <h1>BookShelf</h1>
+      <a href={"/"} className={styles.link}>
+          <span className={styles.linkElements}>
+        <img src="/logo.svg" alt="logo" />
+        <h1>BookShelf</h1>
+              </span>
+      </a>
     </div>
   );
 };

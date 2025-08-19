@@ -40,9 +40,17 @@ const Sidebar = () => {
 
   const renderAvatar = () => {
     if (avatarImage) {
-      return <img src={`/img/profile/${avatarImage}`} alt="Profile" className={styles.avatar} />;
+      return (
+          <a href={'/profile'} className={styles.link}>
+            <img src={`/img/profile/${avatarImage}`} alt="Profile" className={styles.avatar} />
+          </a>
+      );
     } else {
-      return <div className={styles.avatar}>{email?.charAt(0).toUpperCase()}</div>;
+      return(
+          <a href={'/profile'}>
+            <div className={styles.avatar}>{email?.charAt(0).toUpperCase()}</div>
+          </a>
+      );
     }
   };
 
@@ -139,9 +147,11 @@ const Sidebar = () => {
       </div>
 
       <div>
-        <button onClick={handleSignOut} className={styles.signOutButton}>
-          Sign Out
-        </button>
+        {isAuth &&
+          <button onClick={handleSignOut} className={styles.signOutButton}>
+            Sign Out
+          </button>
+        }
       </div>
     </div>
   );

@@ -40,7 +40,6 @@ const Home = () => {
           ...doc.data()
         });
       });
-      console.log(users);
       if (users.length === 0) {
         setError('No public users found with this username');
       } else {
@@ -113,7 +112,7 @@ const Home = () => {
           type="text"
           value={searchUsername}
           onChange={(e) => setSearchUsername(e.target.value)}
-          placeholder="Search by username"
+          placeholder="Search by exact public username"
           className={styles.searchInput}
         />
         <button onClick={handleSearchUser} disabled={loading} className={styles.searchButton}>
@@ -123,14 +122,14 @@ const Home = () => {
           onClick={handleSearchAllUsers}
           disabled={loadingAll}
           className={styles.searchButton}>
-          {loadingAll ? 'Searching...' : 'All Users'}
+          {loadingAll ? 'Searching...' : 'All Public Users'}
         </button>
         {error && <p className={styles.error}>{error}</p>}
       </div>
 
       {foundUsers.length > 0 && (
         <div className={styles.usersList}>
-          <h3 className={styles.sectionTitle}>Found users:</h3>
+          <h3 className={styles.sectionTitle}>Found public users:</h3>
           <div>
             {foundUsers.map((user, index) => (
               <div className={styles.userCard} key={index}>

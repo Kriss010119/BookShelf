@@ -1,11 +1,28 @@
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
   padding: 1rem 2rem;
   background-color: #5d4037;
   color: white;
+}
+
+.link {
+  width: auto;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.linkElements {
+  max-width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease;
+  gap: 1rem;
+}
+
+.linkElements:hover {
+  transform: scale(1.05);
 }
 
 .header img {
