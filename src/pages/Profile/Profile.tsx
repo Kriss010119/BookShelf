@@ -9,7 +9,7 @@ import styles from './Profile.module.css';
 
 function Profile() {
   const dispatch = useDispatch();
-  const { signOut } = useContext(AuthContext);
+  useContext(AuthContext);
   const {
     id: userId,
     email,
@@ -156,11 +156,6 @@ function Profile() {
               onClick={() => setEditMode(true)}
               className={`${styles.actionButton} ${styles.primaryButton}`}>
               Edit Profile
-            </button>
-            <button
-              onClick={signOut}
-              className={`${styles.actionButton} ${styles.secondaryButton}`}>
-              Sign Out
             </button>
           </div>
         </div>

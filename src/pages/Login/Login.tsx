@@ -17,6 +17,7 @@ function Login() {
   const { email, password } = formFields;
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const clearForm = () => {
     setFormFields(defaultFormFields);
@@ -25,6 +26,7 @@ function Login() {
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     try {
+      setLoading(true);
       const userSingIn = await SingInUser(email, password);
       if (userSingIn) {
         const user = userSingIn.user;
@@ -41,6 +43,8 @@ function Login() {
       }
     } catch {
       setError('User Log In failed');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -52,6 +56,7 @@ function Login() {
   return (
     <div className={styles.authContainer}>
       <Form
+        loading={loading}
         title="Login"
         email={email}
         password={password}

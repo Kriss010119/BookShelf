@@ -2,6 +2,7 @@ import type { FormProps } from '../../types/types';
 import styles from './Form.module.css';
 
 export const Form = ({
+  loading,
   title,
   email,
   password,
@@ -46,7 +47,7 @@ export const Form = ({
         />
       </div>
       <button type="submit" className={styles.submitButton}>
-        {title}
+        {!loading ? title : 'Loading...'}
       </button>
       {linkText && linkPath && linkDescription && (
         <p className={styles.linkContainer}>

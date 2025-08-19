@@ -59,6 +59,7 @@ export type LibraryState = {
 };
 
 export type FormProps = {
+  loading: boolean;
   title: string;
   email: string;
   password: string;

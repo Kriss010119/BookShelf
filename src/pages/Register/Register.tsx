@@ -17,6 +17,7 @@ function Register() {
   const { email, password } = formFields;
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const clearForm = () => {
     setFormFields(defaultFormFields);
@@ -25,6 +26,7 @@ function Register() {
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     try {
+      setLoading(true);
       const userCreated = await registerUser(email, password);
       if (userCreated) {
         const user = userCreated.user;
@@ -59,6 +61,8 @@ function Register() {
       }
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : 'Registration failed');
+    } finally {
+        setLoading(false);
     }
   };
 
@@ -70,6 +74,7 @@ function Register() {
   return (
     <div className={styles.authContainer}>
       <Form
+        loading={loading}
         title="Register"
         email={email}
         password={password}
