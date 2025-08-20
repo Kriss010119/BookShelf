@@ -21,8 +21,8 @@ const initialOwnerInfo = {
   avatarType: '',
   avatarImage: '',
   isPublic: false,
-  id: '',
-}
+  id: ''
+};
 
 const Library = ({ isPublic = false }) => {
   const dispatch = useDispatch();
@@ -37,6 +37,7 @@ const Library = ({ isPublic = false }) => {
   const [shelfTitle, setShelfTitle] = useState('');
   const [libraryLoading, setLibraryLoading] = useState(true);
   const myImg = ownerInfo?.avatarImage || '';
+  const [createLoading, setCreateLoading] = useState(false);
 
   useEffect(() => {
     if (!isPublic && isAuth && userId) {
@@ -77,6 +78,7 @@ const Library = ({ isPublic = false }) => {
     if (!shelfTitle.trim()) {
       return;
     }
+    setCreateLoading(true);
     const newShelf: ShelfType = {
       id: `shelf_${Date.now()}`,
       title: shelfTitle,
@@ -86,8 +88,9 @@ const Library = ({ isPublic = false }) => {
     if (userId) {
       await addShelfToFirebase(userId, newShelf);
     }
-    setShelfTitle('');
     setShowAddShelfModal(false);
+    setShelfTitle('');
+    setCreateLoading(false);
   };
 
   const handleRemoveShelf = async (shelfId: string) => {
@@ -110,16 +113,18 @@ const Library = ({ isPublic = false }) => {
       )
     : {};
 
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleAddShelf();
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.imgAndTitle}>
           {isPublic && (
-            <img
-              src={`/img/profile/${myImg}`}
-              alt="Profile"
-              className={styles.avatarImage}
-            />
+            <img src={`/img/profile/${myImg}`} alt="Profile" className={styles.avatarImage} />
           )}
           <h1 className={styles.title}>
             {isPublic && ownerInfo ? `${ownerInfo.username}'s Library` : 'My Library'}
@@ -140,6 +145,7 @@ const Library = ({ isPublic = false }) => {
             <input
               type="text"
               value={shelfTitle}
+              onKeyDown={handleKeyPress}
               onChange={(e) => setShelfTitle(e.target.value)}
               placeholder="Enter shelf name"
               className={styles.modalInput}
@@ -153,7 +159,7 @@ const Library = ({ isPublic = false }) => {
               <button
                 onClick={handleAddShelf}
                 className={`${styles.modalButton} ${styles.modalButtonPrimary}`}>
-                Create
+                {createLoading ? 'Creating...' : 'Create'}
               </button>
             </div>
           </div>

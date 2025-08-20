@@ -22,7 +22,7 @@ export const initAuth = (dispatch: AppDispatch) => {
               avatarImage: 'boy1.jpg',
               isPublic: false
             },
-            undefined,
+            undefined
           );
           await loadLibraryFromFirebase(user.uid);
           profile = await getUserProfile(user.uid);

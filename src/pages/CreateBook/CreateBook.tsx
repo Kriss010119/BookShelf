@@ -79,6 +79,12 @@ const CreateBook: React.FC = () => {
     }
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   const handleAddBook = () => {
     if (!selectedShelf) {
       setErrors({ shelf: 'Shelf is being created, please wait...' });
@@ -177,6 +183,7 @@ const CreateBook: React.FC = () => {
                 setSearchQuery(e.target.value);
                 setErrors((prev) => ({ ...prev, search: '' }));
               }}
+              onKeyPress={handleKeyPress}
               placeholder="Search book by title, author or ISBN"
             />
             <button className={styles.searchButton} onClick={handleSearch} disabled={loading}>
@@ -216,7 +223,7 @@ const CreateBook: React.FC = () => {
               ))}
             </div>
           ) : (
-            searchQuery && !errors.search && <p>Finding books...</p>
+            searchQuery && !errors.search
           )}
 
           <button className={styles.manualModeButton} onClick={() => setManualMode(true)}>
@@ -344,21 +351,6 @@ const CreateBook: React.FC = () => {
                   </div>
                 </div>
               )}
-            </div>
-
-            <div className={styles.formGroup}>
-              <label className={styles.label}>Select Shelf *</label>
-              <div className={styles.shelfInfo}>
-                {selectedShelf ? (
-                  <div>
-                    <strong>{selectedShelf.title}</strong>
-                    <span>({selectedShelf.bookIds.length} books)</span>
-                  </div>
-                ) : (
-                  <p>Creating shelf...</p>
-                )}
-              </div>
-              {errors.shelf && <p className={styles.error}>{errors.shelf}</p>}
             </div>
 
             <div className={styles.actionButtons}>

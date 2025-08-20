@@ -26,6 +26,11 @@
   border: 3px solid #8d6e63;
 }
 
+.avatarImage:hover {
+  transition: all 0.5s ease;
+  transform: scale(1.05);
+}
+
 .subtitle {
   font-size: 1.2rem;
   color: #666;

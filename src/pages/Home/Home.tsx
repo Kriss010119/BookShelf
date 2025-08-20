@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase/firebase-config';
 import { collection, query, where, getDocs } from 'firebase/firestore';
@@ -99,6 +99,12 @@ const Home = () => {
     navigate(`/public-library/${userId}`);
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSearchUser();
+    }
+  };
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Welcome to BookShelf</h1>
@@ -113,6 +119,7 @@ const Home = () => {
           value={searchUsername}
           onChange={(e) => setSearchUsername(e.target.value)}
           placeholder="Search by exact public username"
+          onKeyPress={handleKeyPress}
           className={styles.searchInput}
         />
         <button onClick={handleSearchUser} disabled={loading} className={styles.searchButton}>
@@ -138,6 +145,7 @@ const Home = () => {
                     src={`/img/profile/${user.avatarImage}`}
                     alt="Profile"
                     className={styles.avatarImage}
+                    onClick={() => handleViewLibrary(user.id)}
                   />
                   <p className={styles.userName}>{user.username}</p>
                 </div>

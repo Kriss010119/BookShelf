@@ -72,13 +72,15 @@
   text-overflow: ellipsis;
 }
 
-.removeButton {
+.removeButton,
+.editLink,
+.readLink {
   position: absolute;
   top: -8px;
   right: -8px;
-  width: 24px;
-  height: 24px;
-  background-color: #ef5350;
+  width: 30px;
+  height: 30px;
+  background-color: #9e8576;
   color: white;
   border: none;
   border-radius: 50%;
@@ -87,11 +89,79 @@
   justify-content: center;
   cursor: pointer;
   z-index: 2;
-  transition: background-color 0.2s ease;
+  transition: all 0.3s ease;
 }
 
-.removeButton:hover {
-  background-color: #d32f2f;
+.removeButton:hover,
+.editLink:hover,
+.readLink:hover {
+  background-color: #5d4037;
+  transform: scale(1.05);
+}
+
+.editLink {
+  top: 25px;
+}
+
+.readLink {
+  top: 58px;
+}
+
+.modalContent {
+  padding: 1.5rem 0;
+}
+
+.modalContent p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  color: #5d4037;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.confirmButton {
+  padding: 0.5rem 1rem;
+  background-color: #8d6e63;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.confirmButton:hover {
+  background-color: #6d4c41;
+}
+
+.cancelButton {
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  border: 1px solid #d7ccc8;
+  color: #5d4037;
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cancelButton:hover {
+  background-color: #f5f5f5;
+}
+
+.svg {
+  width: 16px;
+  height: 16px;
 }
 
 @media (max-width: 768px) {
@@ -110,5 +180,44 @@
 
   .bookTitle {
     font-size: 14px;
+  }
+
+  .modalContent {
+    padding: 14px 0;
+  }
+
+  .modalContent p {
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+
+  .modalButtons {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .confirmButton,
+  .cancelButton {
+    width: 100%;
+    padding: 0.875rem;
+  }
+
+  .svg {
+    width: 14px;
+  }
+
+  .editLink {
+    top: 20px;
+  }
+
+  .readLink {
+    top: 48px;
+  }
+
+  .removeButton,
+  .readLink,
+  .editLink {
+    width: 25px;
+    height: 25px;
   }
 }

@@ -110,6 +110,58 @@
   flex-shrink: 0;
 }
 
+.modalContent {
+  padding: 1.5rem 0;
+}
+
+.modalContent p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  color: #5d4037;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.confirmButton {
+  padding: 0.5rem 1rem;
+  background-color: #8d6e63;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.confirmButton:hover {
+  background-color: #6d4c41;
+}
+
+.cancelButton {
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  border: 1px solid #d7ccc8;
+  color: #5d4037;
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cancelButton:hover {
+  background-color: #f5f5f5;
+}
+
 @media (max-width: 768px) {
   .shelfContainer {
     font-size: 14px;
@@ -125,5 +177,25 @@
 
   .actionButton {
     padding: 0.5rem;
+  }
+
+  .modalContent {
+    padding: 14px 0;
+  }
+
+  .modalContent p {
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+
+  .modalButtons {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .confirmButton,
+  .cancelButton {
+    width: 100%;
+    padding: 0.875rem;
   }
 }

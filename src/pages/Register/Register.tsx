@@ -34,9 +34,9 @@ function Register() {
         await updateUserProfile(
           user.uid,
           {
-            username: "",
+            username: '',
             avatarType: 'letter',
-            avatarImage: "",
+            avatarImage: '',
             isPublic: false
           },
           null
@@ -62,7 +62,7 @@ function Register() {
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : 'Registration failed');
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
   };
 

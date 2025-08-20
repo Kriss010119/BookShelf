@@ -12,7 +12,7 @@ const EditBook = () => {
   const { bookId } = useParams<{ bookId: string }>();
   const dispatch = useDispatch();
   const { books } = useSelector((state: RootState) => state.library);
-  const { shelves } = useSelector((state: RootState) => state.library);
+  useSelector((state: RootState) => state.library);
   const { id: userId } = useSelector((state: RootState) => state.user);
   const currentBook = books.find((book) => book.id === bookId);
   const [bookData, setBookData] = useState<BookDataType | null>(null);
@@ -152,7 +152,6 @@ const EditBook = () => {
         </div>
         <div className={styles.section}>
           <h2 className={styles.sectionTitle}>Your Review & Emotions</h2>
-
           <div className={styles.formGroup}>
             <label className={styles.label}>Your Personal Review</label>
             <textarea
@@ -181,7 +180,6 @@ const EditBook = () => {
         <div className={styles.section}>
           <div className={styles.formGroup}>
             <h3 className={styles.sectionTitle}>Cover Options</h3>
-
             <div className={styles.coverButtons}>
               <button
                 className={`${styles.coverButton} ${coverOption === 'url' ? styles.coverButtonActive : ''}`}
@@ -243,19 +241,6 @@ const EditBook = () => {
                 </div>
               </div>
             )}
-          </div>
-
-          <div className={styles.formGroup}>
-            <label className={styles.label}>Current Shelf</label>
-            <div className={styles.shelfInfo}>
-              {currentBook.shelfId ? (
-                <div>
-                  <strong>{shelves.find((s) => s.id === currentBook.shelfId)?.title}</strong>
-                </div>
-              ) : (
-                <p>No shelf assigned</p>
-              )}
-            </div>
           </div>
 
           <div className={styles.actionButtons}>

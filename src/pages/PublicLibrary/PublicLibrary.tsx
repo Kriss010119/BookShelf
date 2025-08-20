@@ -24,14 +24,14 @@ const PublicLibrary = () => {
         const library = await getPublicLibrary(userId);
         const profile = await getPublicUserProfile(userId);
         dispatch(
-            setPublicLibrary({
-              library,
-              ownerInfo: {
-                ...profile,
-                isPublic: true,
-                id: userId
-              }
-            })
+          setPublicLibrary({
+            library,
+            ownerInfo: {
+              ...profile,
+              isPublic: true,
+              id: userId
+            }
+          })
         );
         setLoading(false);
       } catch (error) {

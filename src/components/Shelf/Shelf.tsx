@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Book from '../Book/Book';
 import type { BookType } from '../../types/types';
 import type { BookDataType } from '../../types/types';
 import { useNavigate } from 'react-router-dom';
 import styles from './Shelf.module.css';
+import Modal from '../Modal/Modal.tsx';
 
 interface ShelfProps {
   title: string;
@@ -26,6 +27,26 @@ const Shelf: React.FC<ShelfProps> = ({
   isPublic = false
 }) => {
   const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+  const [loadingDelete, setLoadingDelete] = useState<boolean>(false);
+
+  const handleRemoveClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setShowModal(true);
+  };
+
+  const confirmRemove = () => {
+    if (onRemoveShelf) {
+      setLoadingDelete(true);
+      onRemoveShelf();
+    }
+    setLoadingDelete(false);
+    setShowModal(false);
+  };
+
+  const cancelRemove = () => {
+    setShowModal(false);
+  };
 
   return (
     <div className={styles.shelfContainer}>
@@ -47,8 +68,8 @@ const Shelf: React.FC<ShelfProps> = ({
             {books.length === 0 && !isPublic && (
               <button
                 className={`${styles.actionButton} ${styles.removeButton}`}
-                onClick={onRemoveShelf}>
-                Remove Shelf
+                onClick={handleRemoveClick}>
+                {loadingDelete ? 'Deleting...' : 'Delete shelf'}
               </button>
             )}
           </div>
@@ -72,6 +93,23 @@ const Shelf: React.FC<ShelfProps> = ({
           <div className={styles.emptyShelf}>No books on this shelf</div>
         )}
       </div>
+
+      <Modal isOpen={showModal} title="Confirm Deletion" onClose={cancelRemove}>
+        <div className={styles.modalContent}>
+          <p>Are you sure you want to delete the shelf "{title}"?</p>
+          <div className={styles.modalButtons}>
+            <button className={styles.cancelButton} onClick={cancelRemove} disabled={loadingDelete}>
+              Cancel
+            </button>
+            <button
+              className={styles.confirmButton}
+              onClick={confirmRemove}
+              disabled={loadingDelete}>
+              {loadingDelete ? 'Deleting...' : 'Delete'}
+            </button>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };

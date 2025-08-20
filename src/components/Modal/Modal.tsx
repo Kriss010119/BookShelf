@@ -8,7 +8,7 @@ type ModalProps = {
   children: React.ReactNode;
 };
 
-const Modal = ({ isOpen, title, onClose, children }: ModalProps) => {
+const Modal = ({ isOpen, title, children }: ModalProps) => {
   if (!isOpen) {
     return null;
   }
@@ -18,9 +18,6 @@ const Modal = ({ isOpen, title, onClose, children }: ModalProps) => {
       <div className={styles.modalContent}>
         <div className={styles.modalHeader}>
           <h2 className={styles.modalTitle}>{title}</h2>
-          <button className={styles.closeButton} onClick={onClose}>
-            &times;
-          </button>
         </div>
         <div className={styles.modalBody}>{children}</div>
       </div>
