@@ -14,21 +14,13 @@ const CreateBook: React.FC = () => {
   const dispatch = useDispatch();
   const { id: userId } = useSelector((state: RootState) => state.user);
   const { shelves } = useSelector((state: RootState) => state.library);
-
   const queryParams = new URLSearchParams(location.search);
   const shelfId = queryParams.get('shelfId') || '';
   const [selectedShelf, setSelectedShelf] = useState<ShelfType | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<BookDataType[]>([]);
   const [loading, setLoading] = useState(false);
-  const [bookData, setBookData] = useState<BookDataType | null>(null);
-  const [manualMode, setManualMode] = useState(false);
-  const [coverOption, setCoverOption] = useState<'url' | 'color' | 'none'>('url');
-  const [customCover, setCustomCover] = useState('');
-  const [selectedColor, setSelectedColor] = useState('rgba(104,0,255,0.73)');
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [review, setReview] = useState('');
-  const [readLink, setReadLink] = useState('');
 
   useEffect(() => {
     if (!shelfId) {
@@ -56,6 +48,7 @@ const CreateBook: React.FC = () => {
   }, [shelfId, shelves, userId, dispatch]);
 
   const handleSearch = async () => {
+    setSearchResults([]);
     if (!searchQuery.trim()) {
       setErrors({ search: 'Please enter a search query' });
       return;
@@ -64,9 +57,9 @@ const CreateBook: React.FC = () => {
     setErrors({});
     try {
       const result = await searchBook(searchQuery);
-      if (result) {
-        setBookData(result);
-        setSearchResults([result]);
+      if (result && result.results && result.results.length > 0) {
+        const limitedResults = result.results.slice(0, 50);
+        setSearchResults(limitedResults);
       } else {
         setSearchResults([]);
         setErrors({ search: 'No books found' });
@@ -75,6 +68,7 @@ const CreateBook: React.FC = () => {
       console.error('Search failed:', error);
       setErrors({ search: 'Failed to search books' });
     } finally {
+      setSearchQuery('');
       setLoading(false);
     }
   };
@@ -85,289 +79,114 @@ const CreateBook: React.FC = () => {
     }
   };
 
-  const handleAddBook = () => {
+  const handleBookSelect = async (book: BookDataType) => {
     if (!selectedShelf) {
       setErrors({ shelf: 'Shelf is being created, please wait...' });
       return;
     }
 
-    const newErrors: Record<string, string> = {};
-
-    if (!bookData?.title.trim()) {
-      newErrors.title = 'Title is required';
-    }
-
-    if (!bookData?.authors || bookData.authors.length === 0) {
-      newErrors.authors = 'At least one author is required';
-    }
-
-    if (coverOption === 'url' && customCover && !isValidUrl(customCover)) {
-      newErrors.coverUrl = 'Invalid URL format';
-    }
-
-    if (!shelfId) {
-      newErrors.shelf = 'Shelf is required';
-    }
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
+    if (!book.title?.trim()) {
+      setErrors({ title: 'Book title is required' });
       return;
     }
 
-    if (!bookData || !shelfId) return;
-
-    const finalBookData: BookDataType = {
-      ...bookData,
-      formats: {
-        ...bookData.formats,
-        'image/jpeg':
-          coverOption === 'url' ? customCover : coverOption === 'color' ? selectedColor : undefined
-      },
-      review,
-      readLink
-    };
+    if (!book.authors || book.authors.length === 0) {
+      setErrors({ authors: 'Book author is required' });
+      return;
+    }
 
     const newBook = {
       id: `book_${Date.now()}`,
-      data: finalBookData,
+      data: {
+        ...book,
+        review: '',
+        readLink: ''
+      },
       shelfId: selectedShelf.id
     };
 
-    dispatch(addBook(newBook));
-    if (userId) addBookToFirebase(userId, newBook);
-    navigate('/library');
-  };
-
-  const isValidUrl = (url: string) => {
     try {
-      new URL(url);
-      return true;
-    } catch {
-      return false;
+      dispatch(addBook(newBook));
+      if (userId) {
+        await addBookToFirebase(userId, newBook);
+      }
+      navigate('/library');
+    } catch (error) {
+      console.error('Failed to add book:', error);
+      setErrors({ general: 'Failed to add book to library' });
     }
-  };
-
-  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setBookData((prev) => ({
-      ...(prev as BookDataType),
-      title: e.target.value
-    }));
-    setErrors((prev) => ({ ...prev, title: '' }));
-  };
-
-  const handleAuthorsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const authors = e.target.value
-      .split(',')
-      .map((name) => ({ name: name.trim() }))
-      .filter((author) => author.name);
-
-    setBookData((prev) => ({
-      ...(prev as BookDataType),
-      authors
-    }));
-    setErrors((prev) => ({ ...prev, authors: '' }));
   };
 
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Add New Book</h1>
+      <div className={styles.searchContainer}>
+        <div className={styles.searchInput}>
+          <input
+            type="text"
+            className={styles.input}
+            value={searchQuery}
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+              setErrors((prev) => ({ ...prev, search: '' }));
+            }}
+            onKeyPress={handleKeyPress}
+            placeholder="Search book by title, author or ISBN"
+          />
+          <button className={styles.searchButton} onClick={handleSearch} disabled={loading}>
+            {loading ? 'Searching...' : 'Search'}
+          </button>
+        </div>
+        {errors.search && <p className={styles.error}>{errors.search}</p>}
+        {errors.shelf && <p className={styles.error}>{errors.shelf}</p>}
+        {errors.general && <p className={styles.error}>{errors.general}</p>}
 
-      {!bookData && !manualMode ? (
-        <div className={styles.searchContainer}>
-          <div className={styles.searchInput}>
-            <input
-              type="text"
-              className={styles.input}
-              value={searchQuery}
-              onChange={(e) => {
-                setSearchQuery(e.target.value);
-                setErrors((prev) => ({ ...prev, search: '' }));
-              }}
-              onKeyPress={handleKeyPress}
-              placeholder="Search book by title, author or ISBN"
-            />
-            <button className={styles.searchButton} onClick={handleSearch} disabled={loading}>
-              {loading ? 'Searching...' : 'Search'}
-            </button>
-          </div>
-          {errors.search && <p className={styles.error}>{errors.search}</p>}
-
-          {searchResults.length > 0 ? (
-            <div className={styles.searchResults}>
-              {searchResults.map((book) => (
+        {searchResults.length > 0 && (
+          <div className={styles.searchResults}>
+            <h3 className={styles.resultsTitle}>Found {searchResults.length} Books</h3>
+            <p className={styles.resultsHint}>Click on any book to add it to your collection</p>
+            <div className={styles.resultsGrid}>
+              {searchResults.map((book, index) => (
                 <div
                   className={styles.bookResult}
-                  key={book.id || book.title}
-                  onClick={() => setBookData(book)}>
-                  {book.formats['image/jpeg'] ? (
+                  key={book.id || `${book.title}-${index}`}
+                  onClick={() => handleBookSelect(book)}>
+                  {book.formats && book.formats['image/jpeg'] ? (
                     <img
                       src={book.formats['image/jpeg']}
                       alt={book.title}
                       className={styles.bookCover}
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                      }}
                     />
-                  ) : (
-                    <div className={styles.bookInitial}>{book.title.charAt(0)}</div>
-                  )}
-                  <div className={styles.bookInfo}>
-                    <h3 className={styles.bookTitle}>{book.title}</h3>
+                  ) : null}
+                  <div
+                    className={styles.bookInitial}
+                    style={{ display: book.formats?.['image/jpeg'] ? 'none' : 'flex' }}>
+                    {book.title?.charAt(0) || 'B'}
+                  </div>
+                  <div className={styles.bookInfoOverlay}>
+                    <h4 className={styles.bookTitle}>{book.title}</h4>
                     <p className={styles.bookAuthors}>
-                      by {book.authors.map((a: { name: string }) => a.name).join(', ')}
+                      by{' '}
+                      {book.authors?.map((a: { name: string }) => a.name).join(', ') || 'Unknown'}
                     </p>
-                    {book.download_count && (
-                      <p className={styles.bookDownloads}>
-                        Downloads: {book.download_count.toLocaleString()}
-                      </p>
-                    )}
                   </div>
                 </div>
               ))}
             </div>
-          ) : (
-            searchQuery && !errors.search
-          )}
+          </div>
+        )}
 
-          <button className={styles.manualModeButton} onClick={() => setManualMode(true)}>
-            Enter Book by yourself
+        {searchResults.length <= 0 && !loading && (
+          <button
+            className={styles.manualModeButton}
+            onClick={() => navigate(`/create-book/manual?shelfId=${shelfId}`)}>
+            Enter Book manually
           </button>
-        </div>
-      ) : (
-        <div>
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>Book Information</h2>
-            <div className={styles.formGroup}>
-              <label className={styles.label}>Title *</label>
-              <input
-                type="text"
-                className={styles.input}
-                value={bookData?.title || ''}
-                onChange={handleTitleChange}
-              />
-              {errors.title && <p className={styles.error}>{errors.title}</p>}
-            </div>
-
-            <div className={styles.formGroup}>
-              <label className={styles.label}>Authors (comma separated) *</label>
-              <input
-                type="text"
-                className={styles.input}
-                value={bookData?.authors?.map((a) => a.name).join(', ') || ''}
-                onChange={handleAuthorsChange}
-                placeholder="e.g., J.K. Rowling, Stephen King"
-              />
-              {errors.authors && <p className={styles.error}>{errors.authors}</p>}
-            </div>
-          </div>
-
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>Your Review & Emotions</h2>
-            <div className={styles.formGroup}>
-              <label className={styles.label}>Your Personal Review</label>
-              <textarea
-                className={styles.textarea}
-                value={review}
-                onChange={(e) => setReview(e.target.value)}
-                placeholder="Share your thoughts, feelings, and impressions about this book..."
-              />
-              <p className={styles.hint}>What did you like or dislike? How did it make you feel?</p>
-            </div>
-            <div className={styles.formGroup}>
-              <label className={styles.label}>Reading Link</label>
-              <input
-                type="text"
-                className={styles.input}
-                value={readLink}
-                onChange={(e) => setReadLink(e.target.value)}
-                placeholder="https://example.com/read-book"
-              />
-              {errors.readLink && <p className={styles.error}>{errors.readLink}</p>}
-              <p className={styles.hint}>Where can you read this book online? (optional)</p>
-            </div>
-          </div>
-
-          <div className={styles.section}>
-            <div className={styles.formGroup}>
-              <h3 className={styles.sectionTitle}>Cover Options</h3>
-              <div className={styles.coverButtons}>
-                <button
-                  className={`${styles.coverButton} ${coverOption === 'url' ? styles.coverButtonActive : ''}`}
-                  onClick={() => setCoverOption('url')}>
-                  Image URL
-                </button>
-                <button
-                  className={`${styles.coverButton} ${coverOption === 'color' ? styles.coverButtonActive : ''}`}
-                  onClick={() => setCoverOption('color')}>
-                  Color
-                </button>
-                <button
-                  className={`${styles.coverButton} ${coverOption === 'none' ? styles.coverButtonActive : ''}`}
-                  onClick={() => setCoverOption('none')}>
-                  None
-                </button>
-              </div>
-
-              {coverOption === 'url' && (
-                <div>
-                  <label className={styles.label}>Cover Image URL</label>
-                  <input
-                    type="text"
-                    className={styles.input}
-                    value={customCover}
-                    onChange={(e) => {
-                      setCustomCover(e.target.value);
-                      setErrors((prev) => ({ ...prev, coverUrl: '' }));
-                    }}
-                    placeholder="https://example.com/cover.jpg"
-                  />
-                  {errors.coverUrl && <p className={styles.error}>{errors.coverUrl}</p>}
-                  {customCover && isValidUrl(customCover) && (
-                    <div className={styles.coverPreview}>
-                      <img
-                        src={customCover}
-                        alt="Preview"
-                        className={styles.coverImage}
-                        onError={(e) => {
-                          e.currentTarget.src = '';
-                          e.currentTarget.style.display = 'none';
-                        }}
-                      />
-                    </div>
-                  )}
-                </div>
-              )}
-
-              {coverOption === 'color' && (
-                <div>
-                  <label className={styles.label}>Select Cover Color</label>
-                  <div className={styles.coverPreview}>
-                    <input
-                      type="color"
-                      value={selectedColor}
-                      onChange={(e) => setSelectedColor(e.target.value)}
-                    />
-                    <div
-                      className={styles.colorPreview}
-                      style={{ backgroundColor: selectedColor }}
-                    />
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <div className={styles.actionButtons}>
-              <button
-                className={`${styles.button} ${styles.secondaryButton}`}
-                onClick={() => navigate('/library')}>
-                Cancel
-              </button>
-              <button
-                className={`${styles.button} ${styles.primaryButton}`}
-                onClick={handleAddBook}>
-                Add to Library
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

@@ -24,6 +24,8 @@
 body {
   background: var(--brown-dark);
   width: 100dvw;
+
+  cursor: default;
   height: 100vh;
 }
 

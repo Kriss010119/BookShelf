@@ -21,6 +21,7 @@
 }
 
 .content {
+  box-sizing: border-box;
   grid-area: content;
   padding: 2rem;
   background-color: #bca99a;

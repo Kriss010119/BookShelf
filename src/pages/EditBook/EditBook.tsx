@@ -5,7 +5,7 @@ import type { RootState } from '../../store/store';
 import { updateBook } from '../../store/slices/librarySlice';
 import { updateBookInFirebase } from '../../firebase/libraryService';
 import type { BookDataType } from '../../types/types';
-import styles from '../CreateBook/CreateBook.module.css';
+import styles from '../../components/CreateBookManual/CreateBookManual.module.css';
 
 const EditBook = () => {
   const navigate = useNavigate();

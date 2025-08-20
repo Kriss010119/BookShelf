@@ -85,6 +85,7 @@ const Home = () => {
       if (users.length === 0) {
         setError('No public users found with this username');
       } else {
+        setSearchUsername('');
         setFoundUsers(users);
       }
     } catch (err) {
@@ -123,15 +124,15 @@ const Home = () => {
           className={styles.searchInput}
         />
         <div className={styles.buttons}>
-        <button onClick={handleSearchUser} disabled={loading} className={styles.searchButton}>
-          {loading ? 'Searching...' : 'Search'}
-        </button>
-        <button
-          onClick={handleSearchAllUsers}
-          disabled={loadingAll}
-          className={styles.searchButton}>
-          {loadingAll ? 'Searching...' : 'All Public Users'}
-        </button>
+          <button onClick={handleSearchUser} disabled={loading} className={styles.searchButton}>
+            {loading ? 'Searching...' : 'Search'}
+          </button>
+          <button
+            onClick={handleSearchAllUsers}
+            disabled={loadingAll}
+            className={styles.searchButton}>
+            {loadingAll ? 'Searching...' : 'All Public Users'}
+          </button>
         </div>
         {error && <p className={styles.error}>{error}</p>}
       </div>

@@ -1,67 +1,68 @@
 .loadingContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100dvh;
-    font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100dvh;
+  font-family: 'Poppins', sans-serif;
 }
 
 .loadingContent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 200px;
-    min-width: 200px;
-    border-radius: 50%;
-    background-color: #bca99a;
-    gap: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  min-width: 200px;
+  border-radius: 50%;
+  background-color: #bca99a;
+  gap: 15px;
 }
 
 .bookIcon {
-    animation: rotate 3s linear infinite;
+  animation: rotate 3s linear infinite;
 }
 
 @keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .loadingText {
-    font-family: 'Caveat', cursive;
-    font-size: 1.8rem;
-    font-weight: 600;
-    color: #5d4037;
-    margin: 0;
-    animation: pulse 1.5s ease-in-out infinite;
+  font-family: 'Caveat', cursive;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #5d4037;
+  margin: 0;
+  animation: pulse 1.5s ease-in-out infinite;
 }
 
 @keyframes pulse {
-    0%, 100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-    50% {
-        opacity: 0.7;
-        transform: scale(1.05);
-    }
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
 }
 
 @media (max-width: 768px) {
-    .bookIcon {
-        width: 48px;
-        height: 48px;
-    }
+  .bookIcon {
+    width: 48px;
+    height: 48px;
+  }
 
-    .loadingText {
-        font-size: 20px;
-    }
+  .loadingText {
+    font-size: 20px;
+  }
 
-    .loadingContent {
-        gap: 12px;
-    }
+  .loadingContent {
+    gap: 12px;
+  }
 }

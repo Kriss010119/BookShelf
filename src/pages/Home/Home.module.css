@@ -21,6 +21,7 @@
 }
 
 .avatarImage {
+  cursor: pointer;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid #8d6e63;

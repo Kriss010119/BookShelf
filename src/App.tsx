@@ -14,7 +14,8 @@ import styles from './App.module.css';
 import Sidebar from './components/Sidebar/Sidebar';
 import CreateBook from './pages/CreateBook/CreateBook';
 import PublicLibrary from './pages/PublicLibrary/PublicLibrary';
-import {Loading} from "./components/Loading/Loading.tsx";
+import { Loading } from './components/Loading/Loading.tsx';
+import CreateBookManual from './components/CreateBookManual/CreateBookManual.tsx';
 
 function App() {
   const { isAuth } = useAuth();
@@ -35,9 +36,9 @@ function App() {
       <div className={styles.header}>
         <Header />
       </div>
-    <div className={styles.nav}>
+      <div className={styles.nav}>
         <Sidebar />
-    </div>
+      </div>
       <div className={styles.content}>
         <Routes>
           {isAuth ? (
@@ -45,6 +46,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/library" element={<Library />} />
+              <Route path="/create-book/manual" element={<CreateBookManual />} />
               <Route path="/create-book" element={<CreateBook />} />
               <Route path="/edit-book/:bookId" element={<EditBook />} />
               <Route path="*" element={<Navigate to="/" replace />} />
