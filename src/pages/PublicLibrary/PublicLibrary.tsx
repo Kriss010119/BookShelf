@@ -5,6 +5,7 @@ import type { RootState } from '../../store/store';
 import { setPublicLibrary } from '../../store/slices/librarySlice';
 import { getPublicUserProfile, getPublicLibrary } from '../../firebase/libraryService';
 import Library from '../Library/Library';
+import {Loading} from "../../components/Loading/Loading.tsx";
 
 const PublicLibrary = () => {
   const { userId } = useParams<{ userId: string }>();
@@ -45,7 +46,7 @@ const PublicLibrary = () => {
   }, [userId, dispatch]);
 
   if (loading) {
-    return <div>Loading public library...</div>;
+    return <Loading loadingText={'Loading Public library...'} />;
   }
 
   if (error) {

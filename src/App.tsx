@@ -14,6 +14,7 @@ import styles from './App.module.css';
 import Sidebar from './components/Sidebar/Sidebar';
 import CreateBook from './pages/CreateBook/CreateBook';
 import PublicLibrary from './pages/PublicLibrary/PublicLibrary';
+import {Loading} from "./components/Loading/Loading.tsx";
 
 function App() {
   const { isAuth } = useAuth();
@@ -26,7 +27,7 @@ function App() {
   }, [dispatch]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loading loadingText={'Loading...'} />;
   }
 
   return (
@@ -34,6 +35,9 @@ function App() {
       <div className={styles.header}>
         <Header />
       </div>
+    <div className={styles.nav}>
+        <Sidebar />
+    </div>
       <div className={styles.content}>
         <Routes>
           {isAuth ? (
@@ -56,9 +60,6 @@ function App() {
             </>
           )}
         </Routes>
-      </div>
-      <div className={styles.nav}>
-        <Sidebar />
       </div>
     </div>
   );

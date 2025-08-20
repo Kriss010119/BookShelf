@@ -122,6 +122,7 @@ const Home = () => {
           onKeyPress={handleKeyPress}
           className={styles.searchInput}
         />
+        <div className={styles.buttons}>
         <button onClick={handleSearchUser} disabled={loading} className={styles.searchButton}>
           {loading ? 'Searching...' : 'Search'}
         </button>
@@ -131,6 +132,7 @@ const Home = () => {
           className={styles.searchButton}>
           {loadingAll ? 'Searching...' : 'All Public Users'}
         </button>
+        </div>
         {error && <p className={styles.error}>{error}</p>}
       </div>
 

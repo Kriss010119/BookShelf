@@ -33,24 +33,22 @@
       'nav'
       'content';
     grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
   }
 
   .content {
-    padding: 0;
+    padding: 10px;
     margin: 0;
+    order: 3;
   }
 
   .nav {
     position: relative;
     height: 130px;
+    order: 2;
   }
-}
 
-.loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  font-size: 1.5rem;
-  color: #8d6e63;
+  .header {
+    order: 1;
+  }
 }

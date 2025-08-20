@@ -15,6 +15,7 @@ import Modal from '../../components/Modal/Modal';
 import Shelf from '../../components/Shelf/Shelf';
 import { useNavigate } from 'react-router-dom';
 import styles from './Library.module.css';
+import {Loading} from "../../components/Loading/Loading.tsx";
 
 const initialOwnerInfo = {
   username: '',
@@ -71,7 +72,7 @@ const Library = ({ isPublic = false }) => {
   };
 
   if (libraryLoading) {
-    return <div className={styles.loading}>Loading library...</div>;
+    return <Loading loadingText={'Loading library...'} />;
   }
 
   const handleAddShelf = async () => {

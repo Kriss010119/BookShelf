@@ -131,6 +131,12 @@
   background-color: #6d4c41;
 }
 
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 0 1rem;
@@ -142,5 +148,9 @@
 
   .subtitle {
     font-size: 1rem;
+  }
+
+  .buttons {
+    flex-direction: column;
   }
 }
