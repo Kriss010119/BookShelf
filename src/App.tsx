@@ -17,6 +17,7 @@ import PublicLibrary from './pages/PublicLibrary/PublicLibrary';
 import { Loading } from './components/Loading/Loading.tsx';
 import CreateBookManual from './components/CreateBookManual/CreateBookManual.tsx';
 import BookPage from './pages/BookPage/BookPage.tsx';
+import { WebVitals } from './components/WebVitals';
 
 function App() {
   const { isAuth } = useAuth();
@@ -34,6 +35,7 @@ function App() {
 
   return (
     <div className={styles.parent}>
+      <WebVitals />
       <div className={styles.header}>
         <Header />
       </div>
