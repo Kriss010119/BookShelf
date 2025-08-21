@@ -60,7 +60,7 @@ const PublicLibrary = () => {
 
   return (
     <div>
-      <Library isPublic={true} />
+      <Library isPublic={true} publicUserId={userId} />
     </div>
   );
 };

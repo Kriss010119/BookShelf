@@ -4,7 +4,7 @@ import { selectBook } from '../../store/slices/librarySlice';
 import styles from './Book.module.css';
 import React, { useState } from 'react';
 import Modal from '../Modal/Modal.tsx';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 type BookProps = {
   isPublic: boolean;
@@ -17,9 +17,11 @@ const Book = ({ book, bookId, onRemove, isPublic = false }: BookProps) => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [loadingDelete, setLoadingDelete] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const handleBookClick = () => {
     dispatch(selectBook(bookId));
+    navigate(`/book/${bookId}`, { state: { from: window.location.pathname } });
   };
 
   const handleRemoveClick = (e: React.MouseEvent) => {

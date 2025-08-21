@@ -1,0 +1,235 @@
+.container {
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  height: auto;
+}
+
+.backLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  background-color: #8d6e63;
+  color: white;
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.backLink:hover {
+  background-color: #6d4c41;
+  transform: translateY(-2px);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.notFound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.notFound h2 {
+  font-family: 'Caveat', cursive;
+  font-size: 2rem;
+  color: #5d4037;
+}
+
+.book {
+  display: flex;
+  gap: 3rem;
+  margin-top: 25px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  padding: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.bookCover {
+  height: 400px;
+  width: 300px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.coverImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.colorCover {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  color: white;
+  text-align: center;
+}
+
+.colorCoverContent h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.colorCoverContent p {
+  font-size: 1.2rem;
+}
+
+.textCover {
+  width: 100%;
+  height: 100%;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.textCover h2 {
+  font-size: 1.8rem;
+  color: #5d4037;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.textCover p {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.bookInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mainInfo {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #5d4037;
+}
+
+.title {
+  font-family: 'Caveat', cursive;
+  font-size: 2.5rem;
+  color: #5d4037;
+  margin: 0 0 10px 0;
+  font-weight: 700;
+}
+
+.authors {
+  font-size: 1.2rem;
+  margin-left: 3px;
+  color: #666;
+}
+
+.readButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 12px 18px;
+  background-color: #8d6e63;
+  color: white;
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.readButton:hover {
+  background-color: #6d4c41;
+  transform: translateY(-2px);
+}
+
+.review h3 {
+  font-family: 'Caveat', cursive;
+  font-size: 1.8rem;
+  color: #5d4037;
+  margin: 0 0 5px 0;
+}
+
+.reviewText {
+  height: 100%;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+
+.noReview {
+  font-style: italic;
+  color: #666;
+  margin: 0;
+}
+
+@media (max-width: 1300px) {
+  .info {
+    flex-direction: column;
+    align-items: start;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .book {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1.5rem;
+  }
+
+  .bookCover {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 150px;
+    height: 240px;
+    margin: 0 auto;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .authors {
+    font-size: 1rem;
+  }
+
+  .review h3 {
+    font-size: 1.5rem;
+  }
+
+  .reviewText {
+    font-size: 1rem;
+  }
+}

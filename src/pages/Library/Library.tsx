@@ -1,7 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import type { RootState } from '../../store/store';
-import { addShelf, removeShelf, removeBook, setLibrary } from '../../store/slices/librarySlice';
+import {
+  addShelf,
+  removeShelf,
+  removeBook,
+  setLibrary,
+  selectLibraryPath
+} from '../../store/slices/librarySlice';
 import { useAuth } from '../../hooks/use-auth';
 import {
   loadLibraryFromFirebase,
@@ -25,7 +31,7 @@ const initialOwnerInfo = {
   id: ''
 };
 
-const Library = ({ isPublic = false }) => {
+const Library = ({ isPublic = false, publicUserId = '' }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isAuth, id: userId } = useAuth();
@@ -61,7 +67,12 @@ const Library = ({ isPublic = false }) => {
     } else {
       setLibraryLoading(false);
     }
-  }, [isPublic, isAuth, userId, dispatch]);
+    if (isPublic) {
+      dispatch(selectLibraryPath({ link: `/public-library/${publicUserId}` }));
+    } else {
+      dispatch(selectLibraryPath({ link: '/library' }));
+    }
+  }, [isPublic, publicUserId, dispatch]);
 
   const createDefaultShelf = (): ShelfType => {
     return {

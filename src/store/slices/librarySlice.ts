@@ -8,7 +8,8 @@ const initialState: LibraryState = {
   books: [],
   selectedBook: null,
   publicLibrary: { shelves: [], books: [] },
-  ownerInfo: null
+  ownerInfo: null,
+  libraryLink: '/library'
 };
 
 export const librarySlice = createSlice({
@@ -42,10 +43,17 @@ export const librarySlice = createSlice({
       state.ownerInfo = action.payload.ownerInfo;
     },
     selectBook: (state, action: PayloadAction<string>) => {
-      const book = state.books.find((b) => b.id === action.payload);
+      let book = state.books.find((b) => b.id === action.payload);
+      if (!book && state.publicLibrary !== null) {
+        book = state.publicLibrary.books.find((b) => b.id === action.payload);
+      }
       if (book) {
         state.selectedBook = book;
       }
+    },
+    selectLibraryPath(state, action: PayloadAction<{ link: string }>) {
+      state.libraryLink = action.payload.link;
+      localStorage.setItem('libraryLink', action.payload.link);
     },
     clearSelectedBook: (state) => {
       state.selectedBook = null;
@@ -57,12 +65,6 @@ export const librarySlice = createSlice({
       if (state.selectedBook?.id === action.payload.id) {
         state.selectedBook = action.payload;
       }
-    },
-    updateShelf: (state, action: PayloadAction<ShelfType>) => {
-      const index = state.shelves.findIndex((s) => s.id === action.payload.id);
-      if (index !== -1) {
-        state.shelves[index] = action.payload;
-      }
     }
   }
 });
@@ -72,10 +74,10 @@ export const {
   removeShelf,
   addBook,
   removeBook,
-  updateShelf,
   setLibrary,
   selectBook,
   clearSelectedBook,
+  selectLibraryPath,
   updateBook,
   setPublicLibrary
 } = librarySlice.actions;

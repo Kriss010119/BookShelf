@@ -56,6 +56,7 @@ export type LibraryState = {
     books: BookType[];
   } | null;
   ownerInfo: ProfileType | null;
+  libraryLink: string;
 };
 
 export type FormProps = {
@@ -70,4 +71,14 @@ export type FormProps = {
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;
   onEmailChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onPasswordChange: (event: ChangeEvent<HTMLInputElement>) => void;
+};
+
+export type CommentType = {
+  id: string;
+  bookId: string;
+  userId: string;
+  userAvatar: string;
+  username: string;
+  text: string;
+  createdAt: Date;
 };

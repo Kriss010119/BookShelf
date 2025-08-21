@@ -16,6 +16,7 @@ import CreateBook from './pages/CreateBook/CreateBook';
 import PublicLibrary from './pages/PublicLibrary/PublicLibrary';
 import { Loading } from './components/Loading/Loading.tsx';
 import CreateBookManual from './components/CreateBookManual/CreateBookManual.tsx';
+import BookPage from './pages/BookPage/BookPage.tsx';
 
 function App() {
   const { isAuth } = useAuth();
@@ -51,6 +52,7 @@ function App() {
               <Route path="/edit-book/:bookId" element={<EditBook />} />
               <Route path="*" element={<Navigate to="/" replace />} />
               <Route path="/public-library/:userId" element={<PublicLibrary />} />
+              <Route path="/book/:bookId" element={<BookPage />} />
             </>
           ) : (
             <>
@@ -59,6 +61,7 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="*" element={<Navigate to="/login" replace />} />
               <Route path="/public-library/:userId" element={<PublicLibrary />} />
+              <Route path="/book/:bookId" element={<BookPage />} />
             </>
           )}
         </Routes>
