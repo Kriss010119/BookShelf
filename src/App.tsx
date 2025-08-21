@@ -60,6 +60,8 @@ function App() {
         <Sidebar />
       </div>
       <div className={styles.content}>
+        <button title='Try!' onClick={ () => { Sentry.captureException(new Error('First error')) }}/>
+
         <Routes>
           {isAuth ? (
             <>
