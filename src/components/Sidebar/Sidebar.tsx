@@ -21,15 +21,15 @@ const Sidebar = () => {
   const renderAvatar = () => {
     if (avatarImage) {
       return (
-        <a href={'/profile'} className={styles.link}>
+        <Link to="/profile" className={styles.link}>
           <img src={`/img/profile/${avatarImage}`} alt="Profile" className={styles.avatar} />
-        </a>
+        </Link>
       );
     } else {
       return (
-        <a href={'/profile'}>
+        <Link to="/profile" className={styles.link}>
           <div className={styles.avatar}>{email?.charAt(0).toUpperCase()}</div>
-        </a>
+        </Link>
       );
     }
   };

@@ -18,22 +18,18 @@ import { Loading } from './components/Loading/Loading.tsx';
 import CreateBookManual from './components/CreateBookManual/CreateBookManual.tsx';
 import BookPage from './pages/BookPage/BookPage.tsx';
 import { WebVitals } from './components/WebVitals';
-import * as Sentry from '@sentry/react-native';
+import * as Sentry from '@sentry/react';
 
 Sentry.init({
   dsn: 'https://96e07435093683eb4ebc7b7c4ac2105e@o4509884596420608.ingest.us.sentry.io/4509884664446976',
-
-  // Adds more context data to events (IP address, cookies, user, etc.)
-  // For more information, visit: https://docs.sentry.io/platforms/react-native/data-management/data-collected/
   sendDefaultPii: true,
-
-  // Configure Session Replay
+  integrations: [
+    Sentry.browserTracingIntegration(),
+    Sentry.replayIntegration()
+  ],
+  tracesSampleRate: 0.1,
   replaysSessionSampleRate: 0.1,
-  replaysOnErrorSampleRate: 1,
-  integrations: [Sentry.mobileReplayIntegration(), Sentry.feedbackIntegration()],
-
-  // uncomment the line below to enable Spotlight (https://spotlightjs.com)
-  // spotlight: __DEV__,
+  replaysOnErrorSampleRate: 1.0,
 });
 
 function App() {
@@ -60,8 +56,6 @@ function App() {
         <Sidebar />
       </div>
       <div className={styles.content}>
-        <button title='Try!' onClick={ () => { Sentry.captureException(new Error('First error')) }}/>
-
         <Routes>
           {isAuth ? (
             <>
@@ -91,4 +85,4 @@ function App() {
   );
 }
 
-export default Sentry.wrap(App);
+export default App;

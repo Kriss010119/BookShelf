@@ -42,6 +42,14 @@ const Book = ({ book, bookId, onRemove, isPublic = false }: BookProps) => {
     setShowModal(false);
   };
 
+  const handleEditClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
+
+  const handleReadLinkClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
+
   const coverImage = book.formats['image/jpeg'];
   const isColorCover = coverImage?.startsWith('#');
   const isImageCover = coverImage?.startsWith('http');
@@ -78,7 +86,11 @@ const Book = ({ book, bookId, onRemove, isPublic = false }: BookProps) => {
           </button>
         )}
         {!isPublic && (
-          <Link to={`/edit-book/${bookId}`} className={styles.editLink}>
+          <Link
+            to={`/edit-book/${bookId}`}
+            className={styles.editLink}
+            onClick={handleEditClick}
+          >
             <img className={styles.svg} src="/img/icon/edit.svg" alt="Edit" />
           </Link>
         )}
@@ -87,7 +99,9 @@ const Book = ({ book, bookId, onRemove, isPublic = false }: BookProps) => {
             href={book.readLink}
             target="_blank"
             rel="noopener noreferrer"
-            className={styles.readLink}>
+            className={styles.readLink}
+            onClick={handleReadLinkClick}
+          >
             <img className={styles.svg} src="/img/icon/read.svg" alt="Read link" />
           </a>
         )}
