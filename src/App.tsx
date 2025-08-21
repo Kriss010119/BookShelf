@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { useAuth } from './hooks/use-auth';
 import { initAuth } from './context/auth-listener';
 import { useDispatch } from 'react-redux';
@@ -50,7 +50,6 @@ function App() {
               <Route path="/create-book/manual" element={<CreateBookManual />} />
               <Route path="/create-book" element={<CreateBook />} />
               <Route path="/edit-book/:bookId" element={<EditBook />} />
-              {/*<Route path="*" element={<Navigate to="/" replace />} />*/}
               <Route path="/public-library/:userId" element={<PublicLibrary />} />
               <Route path="/book/:bookId" element={<BookPage />} />
             </>
@@ -59,7 +58,6 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              {/*<Route path="*" element={<Navigate to="/login" replace />} />*/}
               <Route path="/public-library/:userId" element={<PublicLibrary />} />
               <Route path="/book/:bookId" element={<BookPage />} />
             </>
