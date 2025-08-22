@@ -94,7 +94,7 @@ const Book = ({ book, bookId, onRemove, isPublic = false }: BookProps) => {
             <img className={styles.svg} src="/img/icon/edit.svg" alt="Edit" />
           </Link>
         )}
-        {!isPublic && book.readLink && (
+        {book.readLink && (
           <a
             href={book.readLink}
             target="_blank"
