@@ -18,14 +18,14 @@ interface ShelfProps {
 }
 
 const Shelf: React.FC<ShelfProps> = ({
-  title,
-  books,
-  bookData,
-  shelfId,
-  onRemoveShelf,
-  onRemoveBook,
-  isPublic = false
-}) => {
+                                       title,
+                                       books,
+                                       bookData,
+                                       shelfId,
+                                       onRemoveShelf,
+                                       onRemoveBook,
+                                       isPublic = false
+                                     }) => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [loadingDelete, setLoadingDelete] = useState<boolean>(false);
@@ -48,11 +48,30 @@ const Shelf: React.FC<ShelfProps> = ({
     setShowModal(false);
   };
 
+  const onOpenShelfClick = () => {
+    navigate(`/shelf/${shelfId}`, {
+      state: {
+        title,
+        books: books.map(book => ({
+          ...book,
+          bookData: bookData[book.id]
+        })),
+        isPublic,
+      }
+    });
+  };
+
   return (
     <div className={styles.shelfContainer}>
       <div className={styles.shelfHeader}>
         <div>
-          <h2 className={styles.shelfTitle}>{title}</h2>
+          <h2
+            className={styles.shelfTitle}
+            onClick={onOpenShelfClick}
+            style={{ cursor: 'pointer' }}
+          >
+            {title}
+          </h2>
           <span className={styles.bookCount}>({books.length} books)</span>
         </div>
 

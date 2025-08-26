@@ -17,7 +17,13 @@
   margin-bottom: 1.5rem;
   padding-bottom: 0.75rem;
   border-bottom: 1px solid #e0e0e0;
+  transition: all 0.5s ease;
   flex-shrink: 0;
+}
+
+.shelfTitle:hover {
+  transition: all 0.5s ease;
+  transform: scale(1.05);
 }
 
 .shelfTitle {

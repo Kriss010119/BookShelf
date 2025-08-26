@@ -14,11 +14,12 @@ import styles from './App.module.css';
 import Sidebar from './components/Sidebar/Sidebar';
 import CreateBook from './pages/CreateBook/CreateBook';
 import PublicLibrary from './pages/PublicLibrary/PublicLibrary';
-import { Loading } from './components/Loading/Loading.tsx';
-import CreateBookManual from './components/CreateBookManual/CreateBookManual.tsx';
-import BookPage from './pages/BookPage/BookPage.tsx';
+import { Loading } from './components/Loading/Loading';
+import CreateBookManual from './components/CreateBookManual/CreateBookManual';
+import BookPage from './pages/BookPage/BookPage';
 import { WebVitals } from './components/WebVitals';
 import * as Sentry from '@sentry/react';
+import ShelfPage from './pages/ShelfPage/ShelfPage';
 
 Sentry.init({
   dsn: 'https://96e07435093683eb4ebc7b7c4ac2105e@o4509884596420608.ingest.us.sentry.io/4509884664446976',
@@ -59,6 +60,7 @@ function App() {
         <Routes>
           {isAuth ? (
             <>
+              <Route path="/shelf/:shelfId" element={<ShelfPage />} />
               <Route path="/" element={<Home />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/library" element={<Library />} />
@@ -71,6 +73,7 @@ function App() {
             </>
           ) : (
             <>
+              <Route path="/shelf/:shelfId" element={<ShelfPage />} />
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />

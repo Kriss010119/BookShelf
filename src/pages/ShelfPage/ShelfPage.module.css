@@ -1,0 +1,92 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #9e8576;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+}
+
+.backLink {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px;
+    background-color: #8d6e63;
+    color: white;
+    border-radius: 4px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.backLink:hover {
+    background-color: #6d4c41;
+    transform: translateY(-2px);
+}
+
+.pageTitle {
+    font-family: 'Caveat', cursive;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #5d4037;
+    margin: 0;
+}
+
+.bookCount {
+    font-size: 1.1rem;
+    color: #666;
+    margin-left: 0.5rem;
+}
+
+.booksGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.emptyShelf {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.2rem;
+    color: #5d4037;
+}
+
+.emptyShelf p {
+    margin: 0;
+    font-family: 'Caveat', cursive;
+    font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .pageTitle {
+        font-size: 2rem;
+    }
+
+    .booksGrid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .booksGrid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 1rem;
+    }
+
+    .pageTitle {
+        font-size: 1.8rem;
+    }
+
+    .bookCount {
+        font-size: 1rem;
+    }
+}
