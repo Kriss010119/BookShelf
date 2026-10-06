@@ -63,3 +63,48 @@ password: 123456
 
 Изначально все выкладывалось в репозитории гитлаба, поэтому прилагаю коммиты оттуда:
 https://gitlab.education.tbank.ru/js-frameworks-summer-2025/Students/osina.daria/Homeworks/course-work/-/compare/master...homework?from_project_id=13750
+
+## Демонстрация интерфейса
+
+<img width="1696" height="971" alt="image" src="https://github.com/user-attachments/assets/b0d5f740-cb0f-4e83-9fa8-d319d413879c" />
+
+<img width="1622" height="965" alt="image" src="https://github.com/user-attachments/assets/0ec721b5-4e0f-40a9-90b8-f2212c1d8778" />
+
+
+
+<img width="812" height="966" alt="image" src="https://github.com/user-attachments/assets/cd1c2fef-9865-4437-b78e-21043dedcb80" />
+
+
+
+
+
+<img width="837" height="806" alt="image" src="https://github.com/user-attachments/assets/99f3f2a8-0ac0-4ad9-a3dc-8fe26a3278d0" />
+
+
+<img width="1174" height="640" alt="image" src="https://github.com/user-attachments/assets/626a0fd3-8de5-4864-ae7e-4c88fadcc4b1" />
+
+
+<img width="1344" height="576" alt="image" src="https://github.com/user-attachments/assets/65928368-480a-4362-b5b9-c678f2ce54ae" />
+
+
+<img width="525" height="319" alt="image" src="https://github.com/user-attachments/assets/c8cffe45-107c-416a-8072-ee43cdeb5c53" />
+
+
+<img width="986" height="978" alt="image" src="https://github.com/user-attachments/assets/77e0ddda-db3c-4574-b9f7-e762a4ed3d97" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
